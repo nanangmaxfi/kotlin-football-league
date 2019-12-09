@@ -24,7 +24,7 @@ class DetailMatchPresenter(private val view: DetailMatchView) {
             )
     }
 
-    fun getBadgeHome(id: String){
+    fun getBadgeHome(id: String?){
         ApiMain().services.getTeam(id)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.newThread())
@@ -39,7 +39,7 @@ class DetailMatchPresenter(private val view: DetailMatchView) {
             )
     }
 
-    fun getBadgeAway(id: String){
+    fun getBadgeAway(id: String?){
         ApiMain().services.getTeam(id)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.newThread())

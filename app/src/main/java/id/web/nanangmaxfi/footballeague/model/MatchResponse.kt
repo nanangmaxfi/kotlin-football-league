@@ -70,6 +70,9 @@ data class MatchResponse (
     val idHomeTeam: String,
 
     @SerializedName("idAwayTeam")
-    val idAwayTeam: String
+    val idAwayTeam: String,
+
+    @SerializedName("strSport")
+    val sport: String
 
 )

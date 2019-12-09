@@ -5,7 +5,7 @@ import id.web.nanangmaxfi.footballeague.model.MatchResponse
 interface DetailMatchView {
     fun showLoading()
     fun hideLoading()
-    fun showData(match: MatchResponse)
+    fun showData(match: MatchResponse?)
     fun showLogoHome(homeBadge: String)
     fun showLogoAway(awayBadge: String)
 }

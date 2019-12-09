@@ -46,22 +46,22 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         layout_scroll.visibility = View.VISIBLE
     }
 
-    override fun showData(match: MatchResponse) {
-        txt_date.text = DateUtils().dateFormat(match.date+" "+match.time)
-        txt_time.text = DateUtils().timeFormat(match.date+" "+match.time)
-        name_home.text = match.homeTeam
-        name_away.text = match.awayTeam
-        score_home.text = match.homeScore
-        score_away.text = match.awayScore
-        goal_home.text = match.homeGoalDetails
-        goal_away.text = match.awayGoalDetails
-        redcard_home.text = match.homeRedCards
-        redcard_away.text = match.awayRedCards
-        yellowcard_home.text = match.homeYellowCards
-        yellowcard_away.text = match.awayYellowCards
+    override fun showData(match: MatchResponse?) {
+        txt_date.text = DateUtils().dateFormat(match?.date+" "+match?.time)
+        txt_time.text = DateUtils().timeFormat(match?.date+" "+match?.time)
+        name_home.text = match?.homeTeam
+        name_away.text = match?.awayTeam
+        score_home.text = match?.homeScore
+        score_away.text = match?.awayScore
+        goal_home.text = match?.homeGoalDetails
+        goal_away.text = match?.awayGoalDetails
+        redcard_home.text = match?.homeRedCards
+        redcard_away.text = match?.awayRedCards
+        yellowcard_home.text = match?.homeYellowCards
+        yellowcard_away.text = match?.awayYellowCards
 
-        presenter.getBadgeHome(match.idHomeTeam)
-        presenter.getBadgeAway(match.idAwayTeam)
+        presenter.getBadgeHome(match?.idHomeTeam)
+        presenter.getBadgeAway(match?.idAwayTeam)
     }
 
     override fun showLogoHome(homeBadge: String) {
