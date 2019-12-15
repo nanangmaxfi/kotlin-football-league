@@ -5,5 +5,6 @@ import id.web.nanangmaxfi.footballeague.model.MatchResponse
 interface MatchView {
     fun showLoading()
     fun hideLoading()
+    fun notFound()
     fun showData(match: List<MatchResponse>)
 }

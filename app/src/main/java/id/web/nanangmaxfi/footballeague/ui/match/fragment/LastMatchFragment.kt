@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.fragment_last_match.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
-    private lateinit var adapter: LastMatchAdapter
     private lateinit var presenter: MatchPresenter
 
     override fun onCreateView(
@@ -47,6 +46,10 @@ class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
     override fun hideLoading() {
         progress_bar.visibility = View.GONE
         rv_last_match.visibility = View.VISIBLE
+    }
+
+    override fun notFound() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun showData(lastMatch: List<MatchResponse>) {

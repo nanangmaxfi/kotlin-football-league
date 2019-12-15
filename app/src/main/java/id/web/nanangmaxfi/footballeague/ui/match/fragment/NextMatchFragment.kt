@@ -18,7 +18,6 @@ import id.web.nanangmaxfi.footballeague.ui.match.adapter.NextMatchAdapter
 import kotlinx.android.synthetic.main.fragment_next_match.*
 
 class NextMatchFragment(private val idMatch: String) : Fragment(), MatchView {
-    private lateinit var adapter: NextMatchAdapter
     private lateinit var presenter: MatchPresenter
 
     override fun onCreateView(
@@ -45,6 +44,10 @@ class NextMatchFragment(private val idMatch: String) : Fragment(), MatchView {
     override fun hideLoading() {
         progress_bar.visibility = View.GONE
         rv_next_match.visibility = View.VISIBLE
+    }
+
+    override fun notFound() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun showData(lastMatch: List<MatchResponse>) {

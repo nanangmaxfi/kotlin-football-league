@@ -278,4 +278,10 @@
     <string name="red_card">Red Card</string>
     <string name="yellow_card">Yellow Card</string>
     <string name="search">Search</string>
+    <string name="teams">Teams</string>
+    <string name="favorites">Favorites</string>
+    <string name="logo_home_team">Logo Home Team</string>
+    <string name="vs">:</string>
+    <string name="logo_away_team">Logo Away Team</string>
+    <string name="data_not_found">Data Not Found</string>
 </resources>

@@ -11,15 +11,15 @@ import kotlinx.android.synthetic.main.item_match.view.*
 
 class NextMatchAdapter(private val matches: List<MatchResponse>, private val listener: (MatchResponse) -> Unit) :
 RecyclerView.Adapter<NextMatchAdapter.ViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NextMatchAdapter.ViewHolder {
-        return NextMatchAdapter.ViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_match, parent, false)
         )
     }
 
     override fun getItemCount(): Int = matches.size
 
-    override fun onBindViewHolder(holder: NextMatchAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItem(matches[position], listener)
     }
 

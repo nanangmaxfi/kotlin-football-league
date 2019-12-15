@@ -81,8 +81,15 @@ class MatchPresenter(private val view: MatchView) {
                         }
 
                     }
-                    view.showData(list)
-                    view.hideLoading()
+
+                    if (list.isEmpty()){
+                        view.notFound()
+                    }
+                    else{
+                        view.showData(list)
+                        view.hideLoading()
+                    }
+
                 },
                 {
 

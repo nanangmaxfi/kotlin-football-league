@@ -45,14 +45,9 @@ class MatchActivity : AppCompatActivity(), MatchView {
         view_pager.adapter = MatchAdapter(supportFragmentManager, leagueResponse.id)
         tab_layout.setupWithViewPager(view_pager)
 
-//        presenter.getDetailData(leagueResponse.id)
-//        layout_detail.setOnRefreshListener {
-//            presenter.getDetailData(leagueResponse.id)
-//            layout_detail.isRefreshing = false
-//        }
     }
 
-    fun loadHeader(leagueResponse: LeagueResponse){
+    private fun loadHeader(leagueResponse: LeagueResponse){
         txt_title.text = leagueResponse.title
         txt_country.text = leagueResponse.country
         txt_web.text = leagueResponse.website
@@ -110,12 +105,21 @@ class MatchActivity : AppCompatActivity(), MatchView {
         progress_bar.visibility = View.VISIBLE
         rv_search_match.visibility = View.GONE
         layout_detail.visibility = View.GONE
+        txt_not_found.visibility = View.GONE
     }
 
     override fun hideLoading() {
         progress_bar.visibility = View.GONE
         rv_search_match.visibility = View.VISIBLE
         layout_detail.visibility = View.GONE
+        txt_not_found.visibility = View.GONE
+    }
+
+    override fun notFound() {
+        progress_bar.visibility = View.GONE
+        rv_search_match.visibility = View.GONE
+        layout_detail.visibility = View.GONE
+        txt_not_found.visibility = View.VISIBLE
     }
 
 

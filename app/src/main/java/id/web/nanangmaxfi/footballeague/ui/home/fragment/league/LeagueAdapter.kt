@@ -1,4 +1,4 @@
-package id.web.nanangmaxfi.footballeague.ui.main
+package id.web.nanangmaxfi.footballeague.ui.home.fragment.league
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,8 @@ import id.web.nanangmaxfi.footballeague.R
 import id.web.nanangmaxfi.footballeague.model.League
 import kotlinx.android.synthetic.main.item_league.view.*
 
-class MainAdapter(private val leagues: List<League>, private val listener: (League) -> Unit)
-    : RecyclerView.Adapter<MainAdapter.ViewHolder>(){
+class LeagueAdapter(private val leagues: List<League>, private val listener: (League) -> Unit)
+    : RecyclerView.Adapter<LeagueAdapter.ViewHolder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -53,4 +53,5 @@ class DetailMatchPresenter(private val view: DetailMatchView) {
                 }
             )
     }
+
 }

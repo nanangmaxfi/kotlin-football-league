@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class DetailActivity : AppCompatActivity(), DetailView {
-    lateinit var name: TextView
-    lateinit var presenter: DetailPresenter
+    private lateinit var name: TextView
+    private lateinit var presenter: DetailPresenter
 
     companion object{
         const val EXTRA_ID = "extra_id"
@@ -65,7 +65,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
             .load(data?.poster)
             .into(img_poster)
 
-        txt_schedule.setOnClickListener {
+        fab_schedule.setOnClickListener {
             val intent = Intent(this,MatchActivity::class.java)
             intent.putExtra(MatchActivity.EXTRA_LEAGUE, data)
             startActivity(intent)
