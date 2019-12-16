@@ -5,7 +5,7 @@ import id.web.nanangmaxfi.footballeague.api.ApiMain
 import id.web.nanangmaxfi.footballeague.model.MatchResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.*
+
 import kotlin.collections.ArrayList
 
 class MatchPresenter(private val view: MatchView) {
@@ -21,6 +21,7 @@ class MatchPresenter(private val view: MatchView) {
             .subscribeOn(Schedulers.newThread())
             .subscribe (
                 {
+
                     view.showData(it.matchResponses)
                     view.hideLoading()
                 },
@@ -30,21 +31,8 @@ class MatchPresenter(private val view: MatchView) {
                 }
             )
 
-//        ApiMain().services.getLastMatch(id).enqueue(object :
-//            Callback<ListMatchResponse>{
-//            override fun onResponse(call: Call<ListMatchResponse>, response: Response<ListMatchResponse>) {
-//                if (response.code() == 200){
-//                    val lastMatch = response.body()
-//                    getListNextMatch(id, lastMatch)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ListMatchResponse>, t: Throwable) {
-//                view.hideLoading()
-//            }
-//        }
-//        )
     }
+
 
     fun getNextMatch(id: String){
         view.showLoading()

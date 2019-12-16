@@ -9,6 +9,7 @@ import id.web.nanangmaxfi.footballeague.model.MatchResponse
 import id.web.nanangmaxfi.footballeague.utils.DateUtils
 import kotlinx.android.synthetic.main.item_match.view.*
 
+
 class LastMatchAdapter(private val matches: List<MatchResponse>, private val listener: (MatchResponse) -> Unit): RecyclerView.Adapter<LastMatchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastMatchAdapter.ViewHolder {
@@ -35,5 +36,8 @@ class LastMatchAdapter(private val matches: List<MatchResponse>, private val lis
                 listener(matchResponse)
             }
         }
+
     }
+
+
 }

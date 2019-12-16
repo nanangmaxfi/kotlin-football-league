@@ -25,10 +25,6 @@ import id.web.nanangmaxfi.footballeague.utils.MatchUtils
 class LastFavoriteFragment : Fragment() {
     private var favorites: MutableList<Favorite> = mutableListOf()
 
-    companion object{
-        val TAG: String = LastFavoriteFragment::class.java.simpleName
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,7 +53,6 @@ class LastFavoriteFragment : Fragment() {
             swipe_refresh.isRefreshing = false
             val result = select(Favorite.TABLE_FAVORITE)
             val favorite = result.parseList(classParser<Favorite>())
-            Log.d(TAG,favorite.get(0).homeTeam)
             favorites.addAll(favorite.filter { it.matchType.equals(MatchUtils.LAST_MATCH) })
             rv_last_match.adapter?.notifyDataSetChanged()
         }

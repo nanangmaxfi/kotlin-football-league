@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import id.web.nanangmaxfi.footballeague.ui.detail_match.DetailMatchActivity
 import id.web.nanangmaxfi.footballeague.R
 import id.web.nanangmaxfi.footballeague.model.MatchResponse
+import id.web.nanangmaxfi.footballeague.model.TeamResponse
 import id.web.nanangmaxfi.footballeague.ui.match.MatchPresenter
 import id.web.nanangmaxfi.footballeague.ui.match.MatchView
 import id.web.nanangmaxfi.footballeague.ui.match.adapter.LastMatchAdapter
@@ -21,6 +22,8 @@ import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
     private lateinit var presenter: MatchPresenter
+    private lateinit var matchList: List<MatchResponse>
+    private lateinit var badge: List<TeamResponse>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,11 +55,12 @@ class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+
     override fun showData(lastMatch: List<MatchResponse>) {
         rv_last_match.layoutManager = LinearLayoutManager(context)
         rv_last_match.adapter = LastMatchAdapter(lastMatch){
                 val intent = Intent(context,DetailMatchActivity::class.java)
-                intent.putExtra(DetailMatchActivity.EXTRA_ID, it?.id)
+                intent.putExtra(DetailMatchActivity.EXTRA_ID, it.id)
                 intent.putExtra(DetailMatchActivity.EXTRA_NAME, "Match")
                 startActivity(intent)
 
