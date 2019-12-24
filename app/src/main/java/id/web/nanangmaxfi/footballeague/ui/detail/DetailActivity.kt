@@ -9,12 +9,13 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import id.web.nanangmaxfi.footballeague.R
 import id.web.nanangmaxfi.footballeague.model.LeagueResponse
+import id.web.nanangmaxfi.footballeague.repository.DetailRepository
 import id.web.nanangmaxfi.footballeague.ui.match.MatchActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
 class DetailActivity : AppCompatActivity(), DetailView {
-    private lateinit var name: TextView
+       private lateinit var name: TextView
     private lateinit var presenter: DetailPresenter
 
     companion object{
@@ -31,7 +32,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.elevation = 4.0F
 
-        presenter = DetailPresenter(this)
+        presenter = DetailPresenter(this, DetailRepository())
         val idLeague = intent.getStringExtra(EXTRA_ID)
         val name = intent.getStringExtra(EXTRA_NAME)
 
@@ -55,7 +56,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
         layout_detail.visibility = View.VISIBLE
     }
 
-    override fun showData(data: LeagueResponse?) {
+    override fun onDataLoaded(data: LeagueResponse?) {
         txt_title.text = data?.title
         txt_country.text = data?.established
         txt_web.text = data?.country
@@ -71,6 +72,11 @@ class DetailActivity : AppCompatActivity(), DetailView {
             startActivity(intent)
         }
     }
+
+    override fun onDataError() {
+
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){

@@ -7,21 +7,20 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import id.web.nanangmaxfi.footballeague.R
 import id.web.nanangmaxfi.footballeague.model.LeagueResponse
 import id.web.nanangmaxfi.footballeague.model.ListMatchResponse
+import id.web.nanangmaxfi.footballeague.model.ListSearchResponse
 import id.web.nanangmaxfi.footballeague.model.MatchResponse
+import id.web.nanangmaxfi.footballeague.repository.MatchRepository
 import id.web.nanangmaxfi.footballeague.ui.detail_match.DetailMatchActivity
 import kotlinx.android.synthetic.main.activity_match.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
-import org.jetbrains.anko.appcompat.v7.coroutines.onQueryTextListener
-import org.jetbrains.anko.sdk27.coroutines.onQueryTextFocusChange
-import org.jetbrains.anko.searchView
 
 class MatchActivity : AppCompatActivity(), MatchView {
+
     private lateinit var presenter: MatchPresenter
 
     companion object{
@@ -38,7 +37,7 @@ class MatchActivity : AppCompatActivity(), MatchView {
         actionBar?.elevation = 4.0F
         actionBar?.title = "Match"
 
-        presenter = MatchPresenter(this)
+        presenter = MatchPresenter(this, MatchRepository())
         val leagueResponse = intent.getParcelableExtra<LeagueResponse>(EXTRA_LEAGUE)
         loadHeader(leagueResponse)
 
@@ -101,6 +100,10 @@ class MatchActivity : AppCompatActivity(), MatchView {
         })
     }
 
+    override fun onDataError() {
+
+    }
+
     override fun showLoading() {
         progress_bar.visibility = View.VISIBLE
         rv_search_match.visibility = View.GONE
@@ -123,13 +126,33 @@ class MatchActivity : AppCompatActivity(), MatchView {
     }
 
 
-    override fun showData(match: List<MatchResponse>) {
-        rv_search_match.layoutManager = LinearLayoutManager(this)
-        rv_search_match.adapter = MatchSearchAdapter(match){
-            val intent = Intent(this, DetailMatchActivity::class.java)
-            intent.putExtra(DetailMatchActivity.EXTRA_ID, it.id)
-            intent.putExtra(DetailMatchActivity.EXTRA_NAME, "Match")
-            startActivity(intent)
+    override fun onDataLoaded(match: ListMatchResponse?) {
+
+    }
+
+    override fun dataSearch(dataSearch: ListSearchResponse?) {
+        val list: MutableList<MatchResponse> = ArrayList()
+        for (item in dataSearch!!.matchResponses){
+            if (item.sport == "Soccer"){
+                list.add(item)
+            }
+
+        }
+
+        if (list.isEmpty()){
+            notFound()
+        }
+        else{
+            rv_search_match.layoutManager = LinearLayoutManager(this)
+            rv_search_match.adapter = MatchSearchAdapter(list){
+                val intent = Intent(this, DetailMatchActivity::class.java)
+                intent.putExtra(DetailMatchActivity.EXTRA_ID, it.id)
+                intent.putExtra(DetailMatchActivity.EXTRA_NAME, "Match")
+                startActivity(intent)
+
+            hideLoading()
+        }
+
 
         }
     }

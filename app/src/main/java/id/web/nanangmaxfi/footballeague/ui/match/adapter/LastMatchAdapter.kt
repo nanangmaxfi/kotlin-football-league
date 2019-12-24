@@ -5,12 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import id.web.nanangmaxfi.footballeague.R
+import id.web.nanangmaxfi.footballeague.model.ListMatchResponse
 import id.web.nanangmaxfi.footballeague.model.MatchResponse
 import id.web.nanangmaxfi.footballeague.utils.DateUtils
 import kotlinx.android.synthetic.main.item_match.view.*
 
 
-class LastMatchAdapter(private val matches: List<MatchResponse>, private val listener: (MatchResponse) -> Unit): RecyclerView.Adapter<LastMatchAdapter.ViewHolder>() {
+class LastMatchAdapter(private val matches: ListMatchResponse?, private val listener: (MatchResponse) -> Unit): RecyclerView.Adapter<LastMatchAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastMatchAdapter.ViewHolder {
         return ViewHolder(
@@ -18,10 +19,18 @@ class LastMatchAdapter(private val matches: List<MatchResponse>, private val lis
         )
     }
 
-    override fun getItemCount(): Int = matches.size
+    override fun getItemCount(): Int{
+        if(matches?.matchResponses.isNullOrEmpty()){
+            return 0
+        }
+        else{
+            return matches!!.matchResponses.size
+        }
+
+    }
 
     override fun onBindViewHolder(holder: LastMatchAdapter.ViewHolder, position: Int) {
-        holder.bindItem(matches[position], listener)
+        holder.bindItem(matches!!.matchResponses[position], listener)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

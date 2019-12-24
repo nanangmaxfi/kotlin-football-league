@@ -61,4 +61,9 @@ dependencies {
 
     //sqlite
     implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
+
+    //mockito
+    testImplementation 'org.mockito:mockito-core:3.0.0'
+    testImplementation "org.mockito:mockito-inline:3.0.0"
+    testImplementation 'com.nhaarman:mockito-kotlin:1.5.0'
 }

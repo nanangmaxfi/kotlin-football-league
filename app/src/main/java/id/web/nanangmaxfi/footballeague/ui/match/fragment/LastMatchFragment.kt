@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 import id.web.nanangmaxfi.footballeague.ui.detail_match.DetailMatchActivity
 import id.web.nanangmaxfi.footballeague.R
+import id.web.nanangmaxfi.footballeague.model.ListMatchResponse
+import id.web.nanangmaxfi.footballeague.model.ListSearchResponse
 import id.web.nanangmaxfi.footballeague.model.MatchResponse
 import id.web.nanangmaxfi.footballeague.model.TeamResponse
 import id.web.nanangmaxfi.footballeague.ui.match.MatchPresenter
@@ -19,8 +21,13 @@ import id.web.nanangmaxfi.footballeague.ui.match.MatchView
 import id.web.nanangmaxfi.footballeague.ui.match.adapter.LastMatchAdapter
 import kotlinx.android.synthetic.main.fragment_last_match.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import id.web.nanangmaxfi.footballeague.repository.MatchRepository
 
 class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
+    override fun dataSearch(dataSearch: ListSearchResponse?) {
+
+    }
+
     private lateinit var presenter: MatchPresenter
     private lateinit var matchList: List<MatchResponse>
     private lateinit var badge: List<TeamResponse>
@@ -36,7 +43,7 @@ class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = MatchPresenter(this)
+        presenter = MatchPresenter(this, MatchRepository())
         presenter.getLastMatch(idMatch)
 
     }
@@ -52,11 +59,11 @@ class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
     }
 
     override fun notFound() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
 
-    override fun showData(lastMatch: List<MatchResponse>) {
+    override fun onDataLoaded(lastMatch: ListMatchResponse?) {
         rv_last_match.layoutManager = LinearLayoutManager(context)
         rv_last_match.adapter = LastMatchAdapter(lastMatch){
                 val intent = Intent(context,DetailMatchActivity::class.java)
@@ -66,4 +73,8 @@ class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
 
         }
     }
+
+    override fun onDataError() {
+    }
+
 }

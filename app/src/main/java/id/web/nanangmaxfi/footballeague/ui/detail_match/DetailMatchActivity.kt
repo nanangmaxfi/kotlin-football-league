@@ -12,6 +12,7 @@ import id.web.nanangmaxfi.footballeague.R
 import id.web.nanangmaxfi.footballeague.db.database
 import id.web.nanangmaxfi.footballeague.model.Favorite
 import id.web.nanangmaxfi.footballeague.model.MatchResponse
+import id.web.nanangmaxfi.footballeague.repository.DetailMatchRepository
 import id.web.nanangmaxfi.footballeague.utils.DateUtils
 import id.web.nanangmaxfi.footballeague.utils.MatchUtils
 import kotlinx.android.synthetic.main.activity_detail_match.*
@@ -23,6 +24,10 @@ import org.jetbrains.anko.db.select
 import org.jetbrains.anko.design.snackbar
 
 class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
+    override fun onDataError() {
+
+    }
+
     private lateinit var presenter: DetailMatchPresenter
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
@@ -44,7 +49,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.elevation = 4.0F
 
-        presenter = DetailMatchPresenter(this)
+        presenter = DetailMatchPresenter(this, DetailMatchRepository())
         idMatch = intent.getStringExtra(EXTRA_ID)
         val name = intent.getStringExtra(EXTRA_NAME)
 
@@ -64,7 +69,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         layout_scroll.visibility = View.VISIBLE
     }
 
-    override fun showData(match: MatchResponse?) {
+    override fun onDataLoaded(match: MatchResponse?) {
         this.match = match
         txt_date.text = DateUtils().dateFormat(match?.date+" "+match?.time)
         txt_time.text = DateUtils().timeFormat(match?.date+" "+match?.time)

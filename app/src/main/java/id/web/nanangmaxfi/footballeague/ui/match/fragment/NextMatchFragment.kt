@@ -11,13 +11,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import id.web.nanangmaxfi.footballeague.ui.detail_match.DetailMatchActivity
 import id.web.nanangmaxfi.footballeague.R
+import id.web.nanangmaxfi.footballeague.model.ListMatchResponse
+import id.web.nanangmaxfi.footballeague.model.ListSearchResponse
 import id.web.nanangmaxfi.footballeague.model.MatchResponse
 import id.web.nanangmaxfi.footballeague.ui.match.MatchPresenter
 import id.web.nanangmaxfi.footballeague.ui.match.MatchView
 import id.web.nanangmaxfi.footballeague.ui.match.adapter.NextMatchAdapter
 import kotlinx.android.synthetic.main.fragment_next_match.*
+import id.web.nanangmaxfi.footballeague.repository.MatchRepository
 
 class NextMatchFragment(private val idMatch: String) : Fragment(), MatchView {
+    override fun dataSearch(dataSearch: ListSearchResponse?) {
+
+    }
+
     private lateinit var presenter: MatchPresenter
 
     override fun onCreateView(
@@ -31,7 +38,7 @@ class NextMatchFragment(private val idMatch: String) : Fragment(), MatchView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = MatchPresenter(this)
+        presenter = MatchPresenter(this, MatchRepository())
         presenter.getNextMatch(idMatch)
 
     }
@@ -50,7 +57,7 @@ class NextMatchFragment(private val idMatch: String) : Fragment(), MatchView {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun showData(lastMatch: List<MatchResponse>) {
+    override fun onDataLoaded(lastMatch: ListMatchResponse?) {
         rv_next_match.layoutManager = LinearLayoutManager(context)
         rv_next_match.adapter = NextMatchAdapter(lastMatch){
             val intent = Intent(context,DetailMatchActivity::class.java)
@@ -58,5 +65,9 @@ class NextMatchFragment(private val idMatch: String) : Fragment(), MatchView {
             intent.putExtra(DetailMatchActivity.EXTRA_NAME, "Match")
             startActivity(intent)
         }
+    }
+
+    override fun onDataError() {
+
     }
 }

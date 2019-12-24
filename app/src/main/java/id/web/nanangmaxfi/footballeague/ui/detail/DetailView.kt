@@ -1,9 +1,9 @@
 package id.web.nanangmaxfi.footballeague.ui.detail
 
 import id.web.nanangmaxfi.footballeague.model.LeagueResponse
+import id.web.nanangmaxfi.footballeague.repository.DetailRepositoryCallback
 
-interface DetailView {
+interface DetailView : DetailRepositoryCallback<LeagueResponse> {
     fun showLoading()
     fun hideLoading()
-    fun showData(data: LeagueResponse?)
 }
