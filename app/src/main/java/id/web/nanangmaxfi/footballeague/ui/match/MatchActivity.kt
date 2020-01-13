@@ -16,6 +16,7 @@ import id.web.nanangmaxfi.footballeague.model.ListSearchResponse
 import id.web.nanangmaxfi.footballeague.model.MatchResponse
 import id.web.nanangmaxfi.footballeague.repository.MatchRepository
 import id.web.nanangmaxfi.footballeague.ui.detail_match.DetailMatchActivity
+import id.web.nanangmaxfi.footballeague.utils.EspressoIdlingResource
 import kotlinx.android.synthetic.main.activity_match.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
@@ -36,6 +37,7 @@ class MatchActivity : AppCompatActivity(), MatchView {
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.elevation = 4.0F
         actionBar?.title = "Match"
+
 
         presenter = MatchPresenter(this, MatchRepository())
         val leagueResponse = intent.getParcelableExtra<LeagueResponse>(EXTRA_LEAGUE)
@@ -93,6 +95,7 @@ class MatchActivity : AppCompatActivity(), MatchView {
                 if (newText.isNullOrEmpty()) {
                     return false
                 }
+                EspressoIdlingResource.increment()
                 presenter.getSearch(newText)
                 return true
             }
@@ -131,6 +134,9 @@ class MatchActivity : AppCompatActivity(), MatchView {
     }
 
     override fun dataSearch(dataSearch: ListSearchResponse?) {
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            EspressoIdlingResource.decrement()
+        }
         val list: MutableList<MatchResponse> = ArrayList()
         for (item in dataSearch!!.matchResponses){
             if (item.sport == "Soccer"){

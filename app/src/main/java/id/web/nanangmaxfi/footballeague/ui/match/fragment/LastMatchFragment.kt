@@ -22,6 +22,7 @@ import id.web.nanangmaxfi.footballeague.ui.match.adapter.LastMatchAdapter
 import kotlinx.android.synthetic.main.fragment_last_match.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import id.web.nanangmaxfi.footballeague.repository.MatchRepository
+import id.web.nanangmaxfi.footballeague.utils.EspressoIdlingResource
 
 class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
     override fun dataSearch(dataSearch: ListSearchResponse?) {
@@ -44,6 +45,7 @@ class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
         super.onViewCreated(view, savedInstanceState)
 
         presenter = MatchPresenter(this, MatchRepository())
+        EspressoIdlingResource.increment()
         presenter.getLastMatch(idMatch)
 
     }
@@ -64,6 +66,9 @@ class LastMatchFragment(private val idMatch: String) : Fragment(), MatchView {
 
 
     override fun onDataLoaded(lastMatch: ListMatchResponse?) {
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            EspressoIdlingResource.decrement()
+        }
         rv_last_match.layoutManager = LinearLayoutManager(context)
         rv_last_match.adapter = LastMatchAdapter(lastMatch){
                 val intent = Intent(context,DetailMatchActivity::class.java)

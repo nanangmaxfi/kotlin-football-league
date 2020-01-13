@@ -19,6 +19,7 @@ import id.web.nanangmaxfi.footballeague.ui.match.MatchView
 import id.web.nanangmaxfi.footballeague.ui.match.adapter.NextMatchAdapter
 import kotlinx.android.synthetic.main.fragment_next_match.*
 import id.web.nanangmaxfi.footballeague.repository.MatchRepository
+import id.web.nanangmaxfi.footballeague.utils.EspressoIdlingResource
 
 class NextMatchFragment(private val idMatch: String) : Fragment(), MatchView {
     override fun dataSearch(dataSearch: ListSearchResponse?) {
@@ -39,6 +40,7 @@ class NextMatchFragment(private val idMatch: String) : Fragment(), MatchView {
         super.onViewCreated(view, savedInstanceState)
 
         presenter = MatchPresenter(this, MatchRepository())
+        EspressoIdlingResource.increment()
         presenter.getNextMatch(idMatch)
 
     }
@@ -58,6 +60,9 @@ class NextMatchFragment(private val idMatch: String) : Fragment(), MatchView {
     }
 
     override fun onDataLoaded(lastMatch: ListMatchResponse?) {
+        if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+            EspressoIdlingResource.decrement()
+        }
         rv_next_match.layoutManager = LinearLayoutManager(context)
         rv_next_match.adapter = NextMatchAdapter(lastMatch){
             val intent = Intent(context,DetailMatchActivity::class.java)
