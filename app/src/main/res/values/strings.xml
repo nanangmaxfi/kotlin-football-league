@@ -284,4 +284,11 @@
     <string name="vs">:</string>
     <string name="logo_away_team">Logo Away Team</string>
     <string name="data_not_found">Data Not Found</string>
+    <string name="position">#</string>
+    <string name="team">Team</string>
+    <string name="pts">Pts</string>
+    <string name="gf_ga">GF-GA</string>
+    <string name="d">D</string>
+    <string name="w">W</string>
+    <string name="p">P</string>
 </resources>
