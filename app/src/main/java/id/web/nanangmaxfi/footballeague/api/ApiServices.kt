@@ -24,4 +24,7 @@ interface ApiServices {
 
     @GET("searchevents.php")
     fun getSearchMatch(@Query("e") query: String?) : Observable<ListSearchResponse>
+
+    @GET("lookuptable.php")
+    fun getStanding(@Query("l") id: String?) : Observable<ListStandingResponse>
 }
