@@ -12,6 +12,7 @@ import id.web.nanangmaxfi.footballeague.model.LeagueResponse
 import id.web.nanangmaxfi.footballeague.repository.DetailRepository
 import id.web.nanangmaxfi.footballeague.ui.match.MatchActivity
 import id.web.nanangmaxfi.footballeague.ui.standings.StandingsActivity
+import id.web.nanangmaxfi.footballeague.ui.team.TeamActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
@@ -76,6 +77,12 @@ class DetailActivity : AppCompatActivity(), DetailView {
         fab_standing.setOnClickListener {
             val intent = Intent(this,StandingsActivity::class.java)
             intent.putExtra(StandingsActivity.EXTRA_ID, data?.id)
+            startActivity(intent)
+        }
+
+        fab_team.setOnClickListener {
+            val intent = Intent(this,TeamActivity::class.java)
+            intent.putExtra(TeamActivity.EXTRA_ID, data?.id)
             startActivity(intent)
         }
     }

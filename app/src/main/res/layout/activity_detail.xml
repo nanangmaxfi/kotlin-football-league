@@ -230,11 +230,13 @@
                 fab:fab_title="Standing"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/button_gone"
+                android:id="@+id/fab_team"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_multi_account"
                 fab:fab_colorNormal="@color/colorAccent"
-                fab:fab_colorPressed="@color/colorAccentDark"/>
+                fab:fab_colorPressed="@color/colorAccentDark"
+                fab:fab_title="Team"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 </RelativeLayout>

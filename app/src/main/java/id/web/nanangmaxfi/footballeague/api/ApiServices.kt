@@ -27,4 +27,7 @@ interface ApiServices {
 
     @GET("lookuptable.php")
     fun getStanding(@Query("l") id: String?) : Observable<ListStandingResponse>
+
+    @GET("lookup_all_teams.php")
+    fun getAllTeam(@Query("id") id: String?) : Observable<ListTeamResponse>
 }
