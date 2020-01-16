@@ -60,13 +60,13 @@ class DetailActivity : AppCompatActivity(), DetailView {
 
     override fun onDataLoaded(data: LeagueResponse?) {
         txt_title.text = data?.title
-        txt_country.text = data?.established
-        txt_web.text = data?.country
+        txt_established.text = data?.established
+        txt_stadium.text = data?.country
         txt_alternative.text = data?.alternateName
         txt_description.text = data?.description
         Glide.with(applicationContext)
             .load(data?.poster)
-            .into(img_poster)
+            .into(img_badge)
 
         fab_schedule.setOnClickListener {
             val intent = Intent(this,MatchActivity::class.java)

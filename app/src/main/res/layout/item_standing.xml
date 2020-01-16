@@ -5,10 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/backgroundCard"
     app:cardCornerRadius="4dp"
-    app:cardElevation="4dp"
-    app:cardMaxElevation="4dp"
+    app:cardElevation="0dp"
+    app:cardMaxElevation="0dp"
     app:cardUseCompatPadding="true">
 
 

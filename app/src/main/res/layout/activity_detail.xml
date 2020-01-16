@@ -47,7 +47,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                            android:id="@+id/img_poster"
+                            android:id="@+id/img_badge"
                             android:layout_width="150dp"
                             android:layout_height="225dp"
                             android:layout_marginStart="24dp"
@@ -67,12 +67,12 @@
                             android:layout_marginEnd="24dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toEndOf="@+id/img_poster"
-                            app:layout_constraintTop_toTopOf="@+id/img_poster"
+                            app:layout_constraintStart_toEndOf="@+id/img_badge"
+                            app:layout_constraintTop_toTopOf="@+id/img_badge"
                             tools:text="Title" />
 
                     <TextView
-                            android:id="@+id/tv_country"
+                            android:id="@+id/tv_established"
                             style="@style/TextAppearance.AppCompat.txtsubtitle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -84,19 +84,19 @@
                             app:layout_constraintTop_toBottomOf="@+id/txt_title" />
 
                     <TextView
-                            android:id="@+id/txt_country"
+                            android:id="@+id/txt_established"
                             style="@style/TextAppearance.AppCompat.subtitle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="24dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/tv_country"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_country"
+                            app:layout_constraintStart_toStartOf="@+id/tv_established"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_established"
                             tools:text="2019" />
 
                     <TextView
-                            android:id="@+id/tv_web"
+                            android:id="@+id/tv_stadium"
                             style="@style/TextAppearance.AppCompat.txtsubtitle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -104,19 +104,19 @@
                             android:layout_marginEnd="24dp"
                             android:text="@string/country"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/txt_country"
-                            app:layout_constraintTop_toBottomOf="@+id/txt_country" />
+                            app:layout_constraintStart_toStartOf="@+id/txt_established"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_established" />
 
                     <TextView
-                            android:id="@+id/txt_web"
+                            android:id="@+id/txt_stadium"
                             style="@style/TextAppearance.AppCompat.subtitle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
                             android:layout_marginEnd="24dp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/tv_web"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_web"
+                            app:layout_constraintStart_toStartOf="@+id/tv_stadium"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_stadium"
                             tools:text="England" />
 
                     <TextView
@@ -128,8 +128,8 @@
                             android:layout_marginEnd="24dp"
                             android:text="@string/alternate_names"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/txt_web"
-                            app:layout_constraintTop_toBottomOf="@+id/txt_web" />
+                            app:layout_constraintStart_toStartOf="@+id/txt_stadium"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_stadium" />
 
                     <TextView
                             android:id="@+id/txt_alternative"

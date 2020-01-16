@@ -50,11 +50,11 @@ class MatchActivity : AppCompatActivity(), MatchView {
 
     private fun loadHeader(leagueResponse: LeagueResponse){
         txt_title.text = leagueResponse.title
-        txt_country.text = leagueResponse.country
-        txt_web.text = leagueResponse.website
+        txt_established.text = leagueResponse.country
+        txt_stadium.text = leagueResponse.website
         Glide.with(applicationContext)
             .load(leagueResponse.badge)
-            .into(img_poster)
+            .into(img_badge)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

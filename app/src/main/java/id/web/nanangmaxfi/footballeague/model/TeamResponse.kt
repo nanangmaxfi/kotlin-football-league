@@ -13,5 +13,11 @@ data class TeamResponse (
     val badge: String,
 
     @SerializedName("strStadium")
-    val stadium: String
+    val stadium: String,
+
+    @SerializedName("intFormedYear")
+    val established: String,
+
+    @SerializedName("strDescriptionEN")
+    val description: String
 )

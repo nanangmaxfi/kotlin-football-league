@@ -1,5 +1,6 @@
 package id.web.nanangmaxfi.footballeague.ui.team
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import id.web.nanangmaxfi.footballeague.R
 import id.web.nanangmaxfi.footballeague.model.ListTeamResponse
 import id.web.nanangmaxfi.footballeague.repository.TeamRepository
+import id.web.nanangmaxfi.footballeague.ui.team_detail.TeamDetailActivity
 import kotlinx.android.synthetic.main.activity_team.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
 
@@ -47,7 +49,10 @@ class TeamActivity : AppCompatActivity(), TeamView {
     override fun onDataLoaded(data: ListTeamResponse?) {
         rv_team.layoutManager = LinearLayoutManager(this)
         rv_team.adapter = TeamAdapter(data){
-
+            val intent = Intent(this,TeamDetailActivity::class.java)
+            intent.putExtra(TeamDetailActivity.EXTRA_ID, it.id)
+            intent.putExtra(TeamDetailActivity.EXTRA_NAME, it.name)
+            startActivity(intent)
         }
     }
 
