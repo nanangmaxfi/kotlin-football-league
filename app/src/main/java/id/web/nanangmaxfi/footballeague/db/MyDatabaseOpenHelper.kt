@@ -3,6 +3,7 @@ package id.web.nanangmaxfi.footballeague.db
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import id.web.nanangmaxfi.footballeague.model.Favorite
+import id.web.nanangmaxfi.footballeague.model.FavoriteTeam
 import org.jetbrains.anko.db.*
 
 class MyDatabaseOpenHelper(ctx: Context): ManagedSQLiteOpenHelper(ctx, "FavoriteMatch.db",
@@ -31,10 +32,17 @@ class MyDatabaseOpenHelper(ctx: Context): ManagedSQLiteOpenHelper(ctx, "Favorite
             Favorite.HOME_SCORE to TEXT,
             Favorite.AWAY_SCORE to TEXT,
             Favorite.MATCH_TYPE to TEXT)
+        db?.createTable(FavoriteTeam.TABLE_FAVORITE_TEAM, true,
+            FavoriteTeam.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            FavoriteTeam.ID_TEAM to TEXT+ UNIQUE,
+            FavoriteTeam.NAME to TEXT,
+            FavoriteTeam.BADGE to TEXT,
+            FavoriteTeam.STADIUM to TEXT)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.dropTable(Favorite.TABLE_FAVORITE, true)
+        db?.dropTable(FavoriteTeam.TABLE_FAVORITE_TEAM, true)
     }
 
 }

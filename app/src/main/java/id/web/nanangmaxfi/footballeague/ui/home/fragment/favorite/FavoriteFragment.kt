@@ -33,7 +33,7 @@ class FavoriteFragment : Fragment() {
         if(activity is AppCompatActivity){
             (activity as AppCompatActivity).setSupportActionBar(toolbar)
             (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
-            (activity as AppCompatActivity).supportActionBar?.title = "Favorite Match"
+            (activity as AppCompatActivity).supportActionBar?.title = "Favorite"
         }
 
         view_pager.adapter = FavoriteAdapter(childFragmentManager)
