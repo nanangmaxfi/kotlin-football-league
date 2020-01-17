@@ -30,4 +30,7 @@ interface ApiServices {
 
     @GET("lookup_all_teams.php")
     fun getAllTeam(@Query("id") id: String?) : Observable<ListTeamResponse>
+
+    @GET("searchteams.php")
+    fun getSearchTeam(@Query("t") query: String?) : Observable<ListTeamResponse>
 }

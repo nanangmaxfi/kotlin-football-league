@@ -19,5 +19,8 @@ data class TeamResponse (
     val established: String,
 
     @SerializedName("strDescriptionEN")
-    val description: String
+    val description: String,
+
+    @SerializedName("strSport")
+    val sport: String
 )

@@ -23,4 +23,21 @@ class TeamRepository {
 
             )
     }
+
+    fun getSearchTeam(query: String, callback: DetailRepositoryCallback<ListTeamResponse?>){
+        ApiMain().services.getSearchTeam(query)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe ({data ->
+                data?.let{
+                    callback.onDataLoaded(it)
+                } ?: run {
+                    callback.onDataError()
+                }
+            },{
+                callback.onDataError()
+            }
+
+            )
+    }
 }
